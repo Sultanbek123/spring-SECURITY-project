@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="row" layout:fragment="profile">
+    <div class="col-md-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg" style="width:200px;height: 200px;border-radius: 100%">
+        <h3 th:text="${#authentication.principal.fullName}"></h3>
+        <h4 th:text="${#authentication.principal.email}"></h4>
+        <a th:href="@{''}" sec:authorize="hasAnyRole('ROLE_ADMIN')">ADMIN PANEL</a>
+        <a th:href="@{''}">CHANGE PASSWORD</a>
+        <a th:href="@{''}">PREFERENCES</a>
+        <form th:action="@{'/logout'}" method="post">
+            <button class="btn btn-danger">LOGOUT</button>
+        </form>
+    </div>
+</div>
+</html>
